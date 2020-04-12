@@ -6,6 +6,7 @@
  * 同理把左右两部分看成一个整体一直递归，最后再数组拼接起来
  * 它的最优时间复杂度为O(nlogn)【以标记元素为中心，正好每次左右都能均匀分配】，
  * 最糟糕时间复杂度为O(n^2)【标记元素每次是最大或最小值，使所有数都划分到一边】
+ * 不稳定算法
  */
 function quickSort($arr)
 {
@@ -31,5 +32,4 @@ function quickSort($arr)
 $arrtest = [12, 43, 54, 33, 23, 14, 44, 53, 10, 3, 56]; //测试数组
 $res = quickSort($arrtest);
 print_r($res);
-
 var_dump(memory_get_usage());

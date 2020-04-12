@@ -2,8 +2,11 @@
 
 /**
  * 实现思路：每次从数组里面选出一个最大值，一直递归
- * 它的最优时间复杂度为O(n)【正序，数组排好情况下】，最糟糕时间复杂度为O(n^2)【反序：数组排序刚好相反】
+ * 它的最优时间复杂度为O(n)【正序，数组排好情况下】
+ * 最糟糕时间复杂度为O(n^2)【反序：数组排序刚好相反】
+ * 稳定算法
  */
+
 // function bubbleSort($arr)
 // {
 //     $count = count($arr);       //统计出数组的长度
@@ -22,15 +25,16 @@
 //     return $arr;       //返回最终结果
 // }
 
-function bubbleSort($arr){
+function bubbleSort($arr)
+{
     $count = count($arr);       //统计出数组的长度
     if ($count <= 1) {  // 如果个数为空或者1，则原样返回数组
         return $arr;
     }
     // 第一层可以理解为从数组中键为0开始循环到最后一个
-    for ($i = 0; $i < count($arr) ; $i++) {
+    for ($i = 0; $i < count($arr); $i++) {
         // 第二层为从$i+1的地方循环到数组最后
-        for ($j = $i+1; $j < count($arr); $j++) {
+        for ($j = $i + 1; $j < count($arr); $j++) {
             // 比较数组中两个相邻值的大小
             if ($arr[$i] > $arr[$j]) {
                 $temp = $arr[$i]; // 这里临时变量，存贮$i的值
