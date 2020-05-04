@@ -33,6 +33,7 @@ function selectSort($arr)
                 $key = $j;
             }
         }
+        //每循环一次，找到一个最大或最小的值进行替换
         if ($key != $i) {
             // 交换位置
             $temp = $arr[$key];

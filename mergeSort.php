@@ -10,52 +10,56 @@
  * 稳定算法
  */
 
-function merge_sort($nums)
+// 递归 数组引用
+function mergeSort(&$arr, $left, $right)
 {
-    if (count($nums) <= 1) {
-        return $nums;
+    if ($left < $right) {
+        // 找出中间索引
+        $mid = floor(($left + $right) / 2); //向下取整
+        // 对左边数组进行递归
+        mergeSort($arr, $left, $mid);
+        // 对右边数组进行递归
+        mergeSort($arr, $mid + 1, $right);
+        // 合并
+        merge($arr, $left, $mid, $right);
     }
-    merge_sort_c($nums, 0, count($nums) - 1);
-    return $nums;
+    return $arr;
 }
 
-function merge_sort_c(&$nums, $p, $r)
+// 将两个有序数组合并成一个有序数组
+function merge(&$arr, $left, $mid, $right)
 {
-    if ($p >= $r) {
-        return;
-    }
-    $middle = floor(($p + $r) / 2);
-    merge_sort_c($nums, $p, $middle);
-    merge_sort_c($nums, $middle + 1, $r);
-    merge($nums, ['start' => $p, 'end' => $middle], ['start' => $middle + 1, 'end' => $r]);
-}
-
-function merge(&$nums, $array_p, $array_r)
-{
-    $temp = [];
-    $p = $array_p['start'];
-    $r = $array_r['start'];
-    $k = 0;
-    while ($p <= $array_p['end'] && $r <= $array_r['end']) {
-        if ($nums[$p] < $nums[$r]) {
-            $temp[$k++] = $nums[$p++];
+    $i = $left;     // 左数组的下标
+    $j = $mid + 1;  // 右数组的下标
+    $temp = array(); // 临时合并数组    空间复杂度O(n)
+    // 扫描第一段和第二段序列，直到有一个扫描结束
+    while ($i <= $mid && $j <= $right) {
+        // 判断第一段和第二段取出的数哪个更小，将其存入合并序列，并继续向下扫描
+        if ($arr[$i] < $arr[$j]) {
+            $temp[] = $arr[$i];
+            $i++;
         } else {
-            $temp[$k++] = $nums[$r++];
+            $temp[] = $arr[$j];
+            $j++;
         }
     }
-    while ($p <= $array_p['end']) {
-        $temp[$k++] = $nums[$p++];
+    // 比完之后，假如左数组仍有剩余，则直接全部复制到 temp 数组
+    while ($i <= $mid) {
+        $temp[] = $arr[$i];
+        $i++;
     }
-    while ($r <= $array_r['end']) {
-        $temp[$k++] = $nums[$r++];
+    // 比完之后，假如右数组仍有剩余，则直接全部复制到 temp 数组
+    while ($j <= $right) {
+        $temp[] = $arr[$j];
+        $j++;
     }
-
-    for ($i = 0; $i < $k; $i++) {
-        $nums[$i + $array_p['start']] = $temp[$i];
+    // 将合并序列复制到原始序列中
+    for ($k = 0; $k < count($temp); $k++) {
+        $arr[$left + $k] = $temp[$k];
     }
 }
 
 $arrtest = [12, 43, 54, 33, 23, 14, 44, 53, 10, 3, 56]; //测试数组
-$res = merge_sort($arrtest);
+$res = mergeSort($arrtest, 0, count($arrtest) - 1);
 print_r($res);
 var_dump(memory_get_usage());
