@@ -23,10 +23,11 @@ function selectSort($arr)
     if ($count <= 1) {  // 如果个数为空或者1，则原样返回数组
         return $arr;
     }
-    for ($i = 0; $i < $count - 1; $i++) {
+    for ($i = 0; $i < $count - 1; $i++) {   //执行n次
         // 当前值的位置
         $key = $i;
-        for ($j = $i + 1; $j < $count; $j++) {
+        for ($j = $i + 1; $j < $count; $j++) {  //执行n次
+            //总执行n*n次
             // 相邻值进行比较，条件成立替换当前值
             // 倒序 $arr[$key] < $arr[$k]
             if ($arr[$key] > $arr[$j]) {
