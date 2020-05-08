@@ -9,6 +9,7 @@
  * 时间复杂度o(n^1-2) 
  * 最优：o(n)
  * 最糟：o(n^2)
+ * 空间复杂度：O(1)
  */
 function ShellSort(array &$arr)
 {
