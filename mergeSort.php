@@ -30,8 +30,8 @@ function mergeSort(&$arr, $left, $right)
 // 将两个有序数组合并成一个有序数组
 function merge(&$arr, $left, $mid, $right)
 {
-    $i = $left;     // 左数组的下标
-    $j = $mid + 1;  // 右数组的下标
+    $i = $left;     // 左数组的起始下标
+    $j = $mid + 1;  // 右数组的起始下标
     $temp = array(); // 临时合并数组    空间复杂度O(n)
     // 扫描第一段和第二段序列，直到有一个扫描结束
     while ($i <= $mid && $j <= $right) {
@@ -61,6 +61,6 @@ function merge(&$arr, $left, $mid, $right)
 }
 
 $arrtest = [12, 43, 54, 33, 23, 14, 44, 53, 10, 3, 56]; //测试数组
-$res = mergeSort($arrtest, 0, count($arrtest) - 1);
+$res = mergeSort($arrtest, 0, count($arrtest) - 1); //0：数组首位元素，count($arrtest)-1：数组末位元素
 print_r($res);
 var_dump(memory_get_usage());

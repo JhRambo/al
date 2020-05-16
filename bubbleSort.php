@@ -45,7 +45,7 @@ function bubbleSort($arr)
         for ($j = $i + 1; $j < count($arr); $j++) { //执行n次
             //总执行n*n次
             // 比较数组中两个相邻值的大小
-            if ($arr[$i] > $arr[$j]) {
+            if ($arr[$i] > $arr[$j]) {  //升序
                 $temp = $arr[$i]; // 这里临时变量，存贮$i的值
                 $arr[$i] = $arr[$j]; // 第一次更换位置
                 $arr[$j] = $temp; // 完成位置互换

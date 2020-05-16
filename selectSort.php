@@ -31,10 +31,11 @@ function selectSort($arr)
             //总执行n*n次
             // 相邻值进行比较，条件成立替换当前值
             // 倒序 $arr[$key] < $arr[$k]
-            if ($arr[$key] > $arr[$j]) {
+            if ($arr[$key] > $arr[$j]) {    //升序
                 $key = $j;
             }
         }
+        // echo $key.PHP_EOL;
         //每循环一次，找到一个最大或最小的值进行替换
         if ($key != $i) {
             // 交换位置
@@ -42,11 +43,13 @@ function selectSort($arr)
             $arr[$key] = $arr[$i];
             $arr[$i] = $temp;
         }
+        // if($i==1)
+        // return $arr;
     }
     return $arr;
 }
 
-$arrtest = [12, 43, 54, 33, 23, 14, 44, 53, 10, 3, 56]; //测试数组
+$arrtest = [12, 43, 54, 33, 23, 14, 44, 53, 3, 10, 56]; //测试数组
 $res = selectSort($arrtest);
 print_r($res);
 var_dump(memory_get_usage());
